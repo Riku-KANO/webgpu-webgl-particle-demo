@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGPU vs WebGL - Particle Performance Demo</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <div class="controls">
+      <button id="toggle-controls" class="toggle-btn" aria-label="Toggle controls">⚙️</button>
+      <div class="controls-content">
+        <div class="control-group">
+          <label>
+            <input type="radio" name="renderer" value="webgpu" checked>
+            WebGPU (WGSL)
+          </label>
+          <label>
+            <input type="radio" name="renderer" value="webgl">
+            WebGL (GLSL)
+          </label>
+        </div>
+
+        <div class="control-group">
+          <label>
+            パーティクル数: <span id="particle-count-display">50000</span>
+            <input type="range" id="particle-count" min="10000" max="1000000" step="10000" value="50000">
+          </label>
+        </div>
+
+        <div class="control-group">
+          <label>
+            パーティクルサイズ: <span id="particle-size-display">1.0</span>x
+            <input type="range" id="particle-size" min="0.5" max="3.0" step="0.1" value="1.0">
+          </label>
+        </div>
+
+        <button id="reset-btn">リセット</button>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="webgpu-canvas"></canvas>
+      <canvas id="webgl-canvas"></canvas>
+      <div id="error-message" class="error-message"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Renderer</h3>
+        <div id="current-renderer" class="stat-value">WebGPU</div>
+      </div>
+      <div class="stat-card">
+        <h3>FPS</h3>
+        <div id="fps" class="stat-value">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Frame Time</h3>
+        <div id="frame-time" class="stat-value">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Average FPS</h3>
+        <div id="avg-fps" class="stat-value">--</div>
+      </div>
+      <div class="stat-card">
+        <h3>Particle Count</h3>
+        <div id="particle-count-stat" class="stat-value">50,000</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
